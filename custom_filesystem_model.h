@@ -2,6 +2,8 @@
 #define CUSTOM_FILESYSTEM_MODEL_H
 
 #include <QFileSystemModel>
+#include <QSet>
+
 
 class CustomFileSystemModel : public QFileSystemModel
 {
@@ -10,8 +12,11 @@ class CustomFileSystemModel : public QFileSystemModel
 public:
     explicit CustomFileSystemModel(QObject *parent = nullptr);
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    void setFolderOpen(const QString &path, bool open);
 
-signals:
+
+private:
+    QSet<QString> openFolders;
 
 };
 
